@@ -1,0 +1,10 @@
+.git/
+node_modules/
+outputs/
+work/
+.assetsignore
+.gitignore
+README.md
+package.json
+server.js
+wrangler.jsonc
