@@ -1,0 +1,105 @@
+:root { color-scheme: dark; font-family: "Hiragino Sans", "Yu Gothic", system-ui, sans-serif; --ink:#f7f1dd; --muted:#b8c8c0; --table:#123b32; --gold:#e6bd62; --red:#c84c43; }
+* { box-sizing: border-box; }
+html, body { min-height: 100%; margin: 0; }
+[hidden] { display: none !important; }
+body { color:var(--ink); background:radial-gradient(circle at 50% 10%,rgba(230,189,98,.12),transparent 30%),linear-gradient(145deg,#09251f,var(--table)); }
+button { font:inherit; }
+.app-shell { min-height:100svh; padding:max(16px,env(safe-area-inset-top)) 12px max(20px,env(safe-area-inset-bottom)); }
+.game-card { width:min(100%,680px); min-height:calc(100svh - 36px); margin:auto; padding:20px 16px; background:linear-gradient(180deg,rgba(28,89,75,.94),rgba(13,51,42,.97)); border:1px solid rgba(230,189,98,.35); border-radius:22px; box-shadow:0 20px 55px rgba(0,0,0,.3); }
+.game-header { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.eyebrow { margin:0 0 5px; color:var(--gold); font-size:.66rem; font-weight:700; letter-spacing:.13em; }
+h1 { margin:0; font-family:"Yu Mincho",serif; font-size:1.75rem; line-height:1; letter-spacing:.08em; }
+h1 span { margin-left:7px; color:var(--gold); font-family:Georgia,serif; font-size:.55rem; letter-spacing:.2em; }
+.text-button { padding:9px 11px; color:var(--ink); background:transparent; border:1px solid rgba(255,255,255,.28); border-radius:10px; font-size:.75rem; cursor:pointer; }
+.start-screen { display:grid; place-items:center; min-height:70svh; text-align:center; }
+.lead { max-width:19rem; margin:30px auto 10px; color:var(--muted); font-size:.93rem; line-height:1.8; }
+.tile-preview { display:flex; justify-content:center; gap:6px; margin:22px 0 36px; }
+.tile { width:44px; min-width:44px; aspect-ratio:3/4; height:auto; display:inline-flex; align-items:center; justify-content:center; padding:2px; background:linear-gradient(145deg,#fffef8 0%,#f6efd9 72%,#e4d8b9 100%); border:1px solid #d8cba9; border-radius:6px; box-shadow:inset 1px 1px 0 rgba(255,255,255,.95),inset -1px -1px 0 rgba(157,137,94,.18),0 3px 5px rgba(0,0,0,.3); overflow:hidden; }
+.tile img { display:block; width:100%; height:100%; padding:1px; object-fit:contain; aspect-ratio:3/4; pointer-events:none; user-select:none; }
+button.tile { cursor:pointer; touch-action:manipulation; }
+button.tile:active { transform:translateY(3px); box-shadow:0 1px 2px rgba(0,0,0,.3); }
+button.tile.tile--selected { transform:translateY(-8px); box-shadow:0 6px 0 #bf8f32,0 0 0 2px #fff2b8,0 8px 12px rgba(0,0,0,.34); }
+button.tile:focus-visible,button:focus-visible { outline:3px solid #fff; outline-offset:3px; }
+.primary-button { width:100%; min-height:56px; color:#193229; background:linear-gradient(180deg,#f2cf7b,var(--gold)); border:0; border-radius:14px; box-shadow:0 5px 0 #9d7431; font-weight:800; letter-spacing:.06em; cursor:pointer; }
+.primary-button:active { transform:translateY(3px); box-shadow:0 2px 0 #9d7431; }
+.play-screen { min-height:calc(100svh - 116px); margin-top:18px; display:flex; flex-direction:column; }
+.status-panel { display:grid; grid-template-columns:1fr 1fr; margin:0; padding:10px 0; text-align:center; background:rgba(2,24,20,.4); border:1px solid rgba(255,255,255,.08); border-radius:14px; }
+.status-panel--four { grid-template-columns:repeat(4,1fr); }
+.status-panel div+div { border-left:1px solid rgba(255,255,255,.12); }
+.status-panel dt { color:var(--muted); font-size:.67rem; letter-spacing:.1em; }
+.status-panel dd { margin:2px 0 0; }
+.status-panel strong { font-family:Georgia,serif; font-size:1.45rem; font-variant-numeric:tabular-nums; }
+.status-panel span { margin-left:3px; color:var(--muted); font-size:.67rem; }
+.message { margin:14px 0; color:var(--gold); text-align:center; font-size:.82rem; font-weight:700; }
+h2 { display:flex; align-items:baseline; gap:6px; margin:0 0 9px; font-size:.8rem; letter-spacing:.1em; }
+h2 span { color:var(--muted); font-size:.65rem; font-weight:400; }
+.discard-area { margin-top:4px; }
+.player-area { margin-top:12px; padding-top:0; }
+.player-area__heading { display:flex; align-items:center; justify-content:space-between; }
+.draw-label { margin-right:1.5%; color:var(--gold); font-size:.65rem; font-weight:800; letter-spacing:.08em; }
+.hand-row { width:100%; display:flex; align-items:flex-end; justify-content:center; gap:clamp(4px,1.4vw,10px); overflow:hidden; padding:12px 0 6px; }
+.tile-grid { display:grid; grid-template-columns:repeat(13,minmax(0,1fr)); flex:1; gap:1px; }
+.tile-grid .tile { width:100%; min-width:0; }
+.drawn-tile { flex:0 0 calc((100% - clamp(4px,1.4vw,10px) - 12px) / 14); min-height:0; }
+.drawn-tile .tile { width:100%; min-width:0; }
+.tile--drawn { box-shadow:0 4px 0 #bf8f32,0 0 0 2px var(--gold); }
+.action-buttons { display:flex; gap:10px; }
+.kan-buttons { display:contents; }
+.win-button { flex:1; min-height:50px; margin:0 0 12px; color:#fff7dd; background:linear-gradient(180deg,#d85e48,#a63129); border:1px solid #f09a76; border-radius:14px; box-shadow:0 4px 0 #682019; font-size:1rem; font-weight:900; cursor:pointer; }
+.win-button:active { transform:translateY(3px); box-shadow:0 1px 0 #682019; }
+.kan-button { flex:1; min-height:50px; margin:0 0 12px; color:#172d29; background:linear-gradient(180deg,#f2d487,#d9ad4d); border:1px solid #ffe3a1; border-radius:14px; box-shadow:0 4px 0 #876427; font-size:1rem; font-weight:900; cursor:pointer; }
+.kan-button:active { transform:translateY(3px); box-shadow:0 1px 0 #876427; }
+.tenpai-panel { margin:0 0 14px; padding:14px; text-align:center; background:linear-gradient(145deg,rgba(193,54,43,.96),rgba(120,25,24,.96)); border:1px solid #ffb08b; border-radius:14px; box-shadow:0 8px 24px rgba(0,0,0,.28); }
+.tenpai-panel>strong { display:block; margin-bottom:10px; color:#fff3c9; font-family:"Yu Mincho",serif; font-size:1.7rem; letter-spacing:.1em; }
+.wait-row { display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:13px; }
+.wait-row>span { font-size:.75rem; font-weight:800; }
+.wait-tiles { display:flex; gap:3px; }
+.wait-tiles .tile { width:34px; min-width:34px; }
+.kan-area { margin-bottom:12px; }
+.kan-groups { display:flex; flex-wrap:wrap; gap:10px; }
+.kan-group { display:flex; gap:1px; padding:5px; background:rgba(2,24,20,.35); border:1px solid rgba(230,189,98,.25); border-radius:8px; }
+.kan-group .tile { width:30px; min-width:30px; height:auto; box-shadow:0 2px 3px rgba(0,0,0,.22); }
+.used-tile-list { display:grid; gap:4px; padding:6px 4px; background:rgba(2,24,20,.32); border-radius:12px; }
+.used-tile-group { display:grid; grid-template-columns:repeat(9,minmax(0,1fr)); gap:2px; }
+.used-tile-item { min-width:0; display:grid; justify-items:center; gap:1px; }
+.used-tile-item .tile { width:100%; min-width:0; max-width:32px; height:auto; border-radius:4px; box-shadow:0 1px 2px rgba(0,0,0,.22); }
+.used-tile-item strong { color:var(--ink); font-family:Georgia,serif; font-size:clamp(.58rem,2.7vw,.72rem); font-variant-numeric:tabular-nums; line-height:1; }
+.used-tile-item[aria-label*="0枚"] { opacity:.63; }
+.tenpai-history { margin-top:18px; padding-top:14px; border-top:1px solid rgba(230,189,98,.25); }
+.tenpai-history__list { display:grid; gap:12px; }
+.tenpai-history__item { padding:9px 7px; background:rgba(2,24,20,.28); border-left:3px solid var(--gold); border-radius:5px 10px 10px 5px; }
+.tenpai-history__number { display:block; margin-bottom:6px; color:var(--gold); font-size:.72rem; letter-spacing:.08em; }
+.history-hand { display:grid; grid-template-columns:repeat(13,minmax(0,1fr)); gap:1px; width:100%; }
+.history-hand .tile { width:100%; min-width:0; height:auto; padding:1px; border-radius:3px; box-shadow:0 1px 2px rgba(0,0,0,.24); }
+.history-waits { display:flex; align-items:center; gap:7px; margin-top:7px; }
+.history-waits>span { color:var(--muted); font-size:.68rem; font-weight:800; }
+.history-wait-tiles { display:flex; flex-wrap:wrap; gap:2px; }
+.history-wait-tiles .tile { width:clamp(20px,6vw,28px); min-width:clamp(20px,6vw,28px); height:auto; padding:1px; border-radius:3px; box-shadow:0 1px 2px rgba(0,0,0,.24); }
+.empty-state { grid-column:1/-1; align-self:center; margin:14px; color:var(--muted); text-align:center; font-size:.75rem; }
+.end-label { display:grid; place-items:center; width:60px; height:58px; color:var(--muted); border:1px dashed rgba(255,255,255,.25); border-radius:8px; font-size:.75rem; }
+.result-screen { min-height:70svh; display:grid; align-content:center; text-align:center; }
+.result-kicker { margin:0 0 10px; color:var(--gold); font-size:.75rem; font-weight:800; letter-spacing:.18em; }
+.result-title { display:block; margin:0 0 28px; font-family:"Yu Mincho",serif; font-size:clamp(1.65rem,8vw,2.4rem); letter-spacing:0; }
+.result-title strong { color:var(--gold); font-family:Georgia,serif; font-size:1.35em; }
+.result-stats { margin:0 0 28px; padding:8px 18px; background:rgba(2,24,20,.4); border:1px solid rgba(255,255,255,.1); border-radius:16px; }
+.result-stats div { display:flex; align-items:center; justify-content:space-between; padding:13px 0; }
+.result-stats div+div { border-top:1px solid rgba(255,255,255,.1); }
+.result-stats dt { color:var(--muted); font-size:.8rem; }
+.result-stats dd { margin:0; }
+.result-stats strong { margin-right:4px; color:var(--gold); font-family:Georgia,serif; font-size:1.5rem; }
+.share-actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px; }
+.share-actions .primary-button,.x-post-button { min-height:54px; }
+.x-post-button { color:#fff; background:#0b0b0b; border:1px solid rgba(255,255,255,.3); border-radius:14px; box-shadow:0 4px 0 #000; font-weight:800; cursor:pointer; }
+.x-post-button:active { transform:translateY(3px); box-shadow:0 1px 0 #000; }
+.share-status { min-height:1.4em; margin:0 0 12px; color:var(--muted); font-size:.72rem; }
+.share-actions button:disabled { opacity:.65; cursor:wait; }
+@media (max-width:439px) {
+  .app-shell { padding-inline:2px; }
+  .game-card { min-height:calc(100svh - 24px); padding:14px 5px 12px; border-radius:14px; }
+  .play-screen { margin-top:12px; }
+  .message { margin:9px 0; }
+  .discard-area { margin-top:0; }
+  .player-area { margin-top:9px; }
+  .tile-grid .tile,.drawn-tile .tile { height:auto; border-radius:3px; }
+}
+@media (min-width:440px) { .game-card{padding-inline:24px}.tile-grid{gap:3px}.used-tile-list{gap:6px;padding:8px}.used-tile-group{gap:4px} }

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#123b32" />
+    <link rel="icon" href="./assets/tiles/Chun.svg" type="image/svg+xml" />
+    <meta name="description" content="136枚の牌を使い切るまでに何回テンパイできるか競う一人用麻雀ゲーム" />
+    <title>牌尽 - HAIJIN -</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./js/tile-assets.js" defer></script>
+    <script src="./js/game-rules.js" defer></script>
+    <script src="./js/result-share.js" defer></script>
+    <script src="./js/app.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="game-card" aria-labelledby="game-title">
+        <header class="game-header">
+          <div><p class="eyebrow">一人用・136枚チャレンジ</p><h1 id="game-title">牌尽 <span>HAIJIN</span></h1></div>
+          <button id="restart-button" class="text-button" type="button" hidden>最初から</button>
+        </header>
+
+        <section id="start-screen" class="start-screen">
+          <p class="lead">すべての牌を使い切るまでに、何回テンパイできるか。</p>
+          <div class="tile-preview" aria-hidden="true">
+            <span class="tile"><img src="./assets/tiles/Man1.svg" alt="" /></span><span class="tile"><img src="./assets/tiles/Pin9.svg" alt="" /></span>
+            <span class="tile"><img src="./assets/tiles/Hatsu.svg" alt="" /></span><span class="tile"><img src="./assets/tiles/Haku.svg" alt="" /></span><span class="tile"><img src="./assets/tiles/Chun.svg" alt="" /></span>
+          </div>
+          <button id="start-button" class="primary-button" type="button">ゲームをはじめる</button>
+        </section>
+
+        <section id="play-screen" class="play-screen" hidden>
+          <dl class="status-panel status-panel--four">
+            <div><dt>テンパイ</dt><dd><strong id="tenpai-count">0</strong><span>回</span></dd></div>
+            <div><dt>巡目</dt><dd><strong id="turn-count">0</strong><span>巡</span></dd></div>
+            <div><dt>山の残り</dt><dd><strong id="tiles-left">136</strong><span>枚</span></dd></div>
+            <div><dt>使用済み</dt><dd><strong id="discard-count">0</strong><span>枚</span></dd></div>
+          </dl>
+          <p id="message" class="message" aria-live="polite">捨てる牌を1枚選んでください</p>
+          <section class="discard-area" aria-labelledby="discard-heading">
+            <h2 id="discard-heading">使用済み牌 <span>ゲーム累計</span></h2><div id="discards" class="used-tile-list"></div>
+          </section>
+          <section class="player-area" aria-labelledby="hand-heading">
+            <div id="kan-area" class="kan-area" hidden>
+              <h2>カン</h2><div id="kans" class="kan-groups"></div>
+            </div>
+            <div class="player-area__heading">
+              <h2 id="hand-heading">手牌 <span id="hand-count-label">左13枚＋ツモ牌</span></h2>
+              <span id="draw-heading" class="draw-label">ツモ</span>
+            </div>
+            <div id="action-buttons" class="action-buttons">
+              <div id="kan-buttons" class="kan-buttons" aria-label="カン可能な牌"></div>
+            </div>
+            <section id="tenpai-panel" class="tenpai-panel" hidden>
+              <strong>テンパイ！</strong>
+              <div class="wait-row"><span>待ち</span><div id="waits" class="wait-tiles"></div></div>
+              <button id="next-round-button" class="primary-button" type="button">次の局へ</button>
+            </section>
+            <div class="hand-row">
+              <div id="hand" class="tile-grid" role="group" aria-label="手牌"></div>
+              <div id="drawn-tile" class="drawn-tile" role="group" aria-labelledby="draw-heading"></div>
+            </div>
+          </section>
+        </section>
+
+        <section id="result-screen" class="result-screen" hidden>
+          <p class="result-kicker">ゲーム終了</p>
+          <h2 class="result-title">今回の記録：<strong id="result-tenpais">0</strong>テンパイ</h2>
+          <dl class="result-stats">
+            <div><dt>テンパイ回数</dt><dd><strong id="result-total-tenpais">0</strong>回</dd></div>
+            <div><dt>総捨て牌数</dt><dd><strong id="result-discards">0</strong>枚</dd></div>
+            <div><dt>使用した牌数</dt><dd><strong id="result-used">0</strong>枚</dd></div>
+            <div><dt>残った牌数</dt><dd><strong id="result-remaining">0</strong>枚</dd></div>
+          </dl>
+          <div class="share-actions">
+            <button id="save-result-button" class="primary-button" type="button">結果画像を保存</button>
+            <button id="x-post-button" class="x-post-button" type="button">Xに投稿</button>
+          </div>
+          <p id="share-status" class="share-status" aria-live="polite"></p>
+          <button id="again-button" class="primary-button" type="button">もう一度遊ぶ</button>
+        </section>
+
+        <section id="history-section" class="tenpai-history" aria-labelledby="history-heading" hidden>
+          <h2 id="history-heading">これまでのテンパイ形 <span>ゲーム履歴</span></h2>
+          <div id="tenpai-history-list" class="tenpai-history__list"><p class="empty-state">まだテンパイはありません</p></div>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

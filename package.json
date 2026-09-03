@@ -1,0 +1,10 @@
+{
+  "name": "mahjong-136-haijin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "牌尽 HAIJIN - local restoration of the published static game",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  }
+}
