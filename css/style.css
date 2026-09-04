@@ -12,6 +12,8 @@ h1 { margin:0; font-family:"Yu Mincho",serif; font-size:1.75rem; line-height:1; 
 h1 span { margin-left:7px; color:var(--gold); font-family:Georgia,serif; font-size:.55rem; letter-spacing:.2em; }
 .text-button { padding:9px 11px; color:var(--ink); background:transparent; border:1px solid rgba(255,255,255,.28); border-radius:10px; font-size:.75rem; cursor:pointer; }
 .start-screen { display:grid; place-items:center; min-height:70svh; text-align:center; }
+#chinitsu-start-button { grid-column:1; }
+#play-screen[data-mode="chinitsu"] .wait-tiles { flex-wrap:wrap; justify-content:center; }
 .mode-buttons { width:100%; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
 .mode-buttons .primary-button { padding:12px 4px; font-size:clamp(.75rem,3.2vw,1rem); letter-spacing:0; }
 .return-title-dialog { width:min(90vw,360px); padding:24px; color:var(--ink); background:var(--table); border:1px solid var(--gold); border-radius:16px; }
@@ -70,7 +72,7 @@ h2 span { color:var(--muted); font-size:.65rem; font-weight:400; }
 .used-tile-item { min-width:0; display:grid; justify-items:center; gap:1px; }
 .used-tile-item .tile { width:100%; min-width:0; max-width:32px; height:auto; border-radius:4px; box-shadow:0 1px 2px rgba(0,0,0,.22); }
 .used-tile-item strong { color:var(--ink); font-family:Georgia,serif; font-size:clamp(.58rem,2.7vw,.72rem); font-variant-numeric:tabular-nums; line-height:1; }
-.used-tile-item[aria-label*="0枚"] { opacity:.63; }
+.used-tile-item[aria-label$="使用済み0枚"] { opacity:.63; }
 .tenpai-history { margin-top:18px; padding-top:14px; border-top:1px solid rgba(230,189,98,.25); }
 .tenpai-history__list { display:grid; gap:12px; }
 .tenpai-history__item { padding:9px 7px; background:rgba(2,24,20,.28); border-left:3px solid var(--gold); border-radius:5px 10px 10px 5px; }
