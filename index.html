@@ -17,7 +17,7 @@
     <main class="app-shell">
       <section class="game-card" aria-labelledby="game-title">
         <header class="game-header">
-          <div><p class="eyebrow">一人用・136枚チャレンジ</p><h1 id="game-title">牌尽 <span>HAIJIN</span></h1></div>
+          <div><p id="mode-label" class="eyebrow">一人用・麻雀チャレンジ</p><h1 id="game-title">牌尽 <span>HAIJIN</span></h1></div>
           <button id="restart-button" class="text-button" type="button" hidden>最初から</button>
         </header>
 
@@ -27,7 +27,10 @@
             <span class="tile"><img src="./assets/tiles/Man1.svg" alt="" /></span><span class="tile"><img src="./assets/tiles/Pin9.svg" alt="" /></span>
             <span class="tile"><img src="./assets/tiles/Hatsu.svg" alt="" /></span><span class="tile"><img src="./assets/tiles/Haku.svg" alt="" /></span><span class="tile"><img src="./assets/tiles/Chun.svg" alt="" /></span>
           </div>
-          <button id="start-button" class="primary-button" type="button">ゲームをはじめる</button>
+          <div class="mode-buttons" aria-label="ゲームモード">
+            <button id="start-button" class="primary-button" type="button">四人麻雀　スタート</button>
+            <button id="sanma-start-button" class="primary-button" type="button">三人麻雀　スタート</button>
+          </div>
         </section>
 
         <section id="play-screen" class="play-screen" hidden>
@@ -87,5 +90,14 @@
         </section>
       </section>
     </main>
+    <dialog id="return-title-dialog" class="return-title-dialog" aria-labelledby="return-title-question">
+      <form method="dialog">
+        <p id="return-title-question">タイトルに戻りますか？</p>
+        <div class="dialog-actions">
+          <button class="primary-button" value="yes">はい</button>
+          <button class="text-button" value="no" autofocus>いいえ</button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>

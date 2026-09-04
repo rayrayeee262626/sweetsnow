@@ -12,6 +12,12 @@ h1 { margin:0; font-family:"Yu Mincho",serif; font-size:1.75rem; line-height:1; 
 h1 span { margin-left:7px; color:var(--gold); font-family:Georgia,serif; font-size:.55rem; letter-spacing:.2em; }
 .text-button { padding:9px 11px; color:var(--ink); background:transparent; border:1px solid rgba(255,255,255,.28); border-radius:10px; font-size:.75rem; cursor:pointer; }
 .start-screen { display:grid; place-items:center; min-height:70svh; text-align:center; }
+.mode-buttons { width:100%; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+.mode-buttons .primary-button { padding:12px 4px; font-size:clamp(.75rem,3.2vw,1rem); letter-spacing:0; }
+.return-title-dialog { width:min(90vw,360px); padding:24px; color:var(--ink); background:var(--table); border:1px solid var(--gold); border-radius:16px; }
+.return-title-dialog::backdrop { background:rgba(0,0,0,.65); }
+.return-title-dialog p { margin:0 0 22px; text-align:center; }
+.dialog-actions { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 .lead { max-width:19rem; margin:30px auto 10px; color:var(--muted); font-size:.93rem; line-height:1.8; }
 .tile-preview { display:flex; justify-content:center; gap:6px; margin:22px 0 36px; }
 .tile { width:44px; min-width:44px; aspect-ratio:3/4; height:auto; display:inline-flex; align-items:center; justify-content:center; padding:2px; background:linear-gradient(145deg,#fffef8 0%,#f6efd9 72%,#e4d8b9 100%); border:1px solid #d8cba9; border-radius:6px; box-shadow:inset 1px 1px 0 rgba(255,255,255,.95),inset -1px -1px 0 rgba(157,137,94,.18),0 3px 5px rgba(0,0,0,.3); overflow:hidden; }
