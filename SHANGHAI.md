@@ -4,6 +4,8 @@
 
 ## 遊ぶ
 
+試遊URL： https://haijin-shanghai-preview.trusting-spleen.workers.dev/
+
 `npm start` 後、`http://127.0.0.1:4173/shanghai.html` を開きます。通常の `/` は既存ゲームのままです。
 
 - 136枚をシャッフルして13枚を配牌、残り123枚を下段81枚（9×9）・中段30枚（6×5）・上段12枚（4×3）に配置します。
