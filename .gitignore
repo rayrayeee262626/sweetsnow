@@ -1,2 +1,5 @@
 node_modules/
 outputs/
+shanghai-dist/
+.wrangler/
+work/*.png

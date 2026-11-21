@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b2823">
+  <meta name="description" content="立体の牌山から1枚ずつツモる、一人用麻雀。牌尽 — 上海の試作版。">
+  <title>牌尽 — 上海</title>
+  <link rel="icon" href="./assets/tiles/Chun.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./css/shanghai.css">
+  <script defer src="./js/tile-assets.js"></script>
+  <script defer src="./js/game-rules.js"></script>
+  <script defer src="./js/shanghai-rules.js"></script>
+  <script defer src="./js/shanghai-app.js"></script>
+</head>
+<body>
+<main class="shanghai" id="app">
+  <header class="header">
+    <div><p class="eyebrow">HAIJIN · SHANGHAI / PROTOTYPE</p><h1>牌尽 <span>— 上海</span></h1></div>
+    <div class="header-actions"><button id="help" class="quiet" type="button" aria-label="遊び方と得点">？</button><button id="restart" class="quiet" type="button">やり直す</button></div>
+  </header>
+  <section class="stats" aria-label="ゲーム状況">
+    <div><span>巡目</span><strong id="turn">0</strong></div>
+    <div><span>得点倍率</span><strong id="multiplier">×1.000</strong></div>
+    <div><span>山の残り</span><strong id="remaining">123<small>枚</small></strong></div>
+    <div><span>取れる牌</span><strong id="available">0<small>枚</small></strong></div>
+  </section>
+  <section class="board-section" aria-labelledby="board-heading">
+    <div class="board-toolbar"><h2 id="board-heading">上海の牌山 <span>3層 · 123枚</span></h2><div class="zoom"><button id="zoom-out" class="quiet" type="button" aria-label="牌山を縮小">−</button><button id="zoom-in" class="quiet" type="button" aria-label="牌山を拡大">＋</button></div></div>
+    <div id="board-viewport" class="board-viewport" tabindex="0" aria-label="牌山。拡大中はスクロールできます"><div id="board" class="board" role="group" aria-label="立体の牌山"></div></div>
+    <p class="board-caption"><i></i>明るい枠の牌を1枚ツモれます <span>同じ牌のペア取りは不要</span></p>
+  </section>
+  <section class="player" aria-labelledby="hand-heading">
+    <div class="hand-heading"><h2 id="hand-heading">手牌 <span id="hand-size">13枚</span></h2><p id="status" role="status" aria-live="polite">牌山から1枚選んでください</p></div>
+    <div id="hand" class="hand" role="group" aria-label="手牌"></div>
+    <div class="actions"><button id="discard" class="action discard" type="button" disabled>捨てる牌を選択</button><button id="win" class="action win" type="button" hidden>ツモ和了</button></div>
+  </section>
+  <footer><span>門前ツモ +1翻 · 1巡ごとに得点 ×0.92</span><button id="discards-button" class="footer-button" type="button">捨て牌 <span id="discard-count">0</span></button></footer>
+</main>
+<dialog id="help-dialog" class="sheet" aria-labelledby="help-title">
+  <h2 id="help-title">遊び方</h2>
+  <ol><li>ランダムな13枚の配牌からスタート。</li><li>上に牌がなく、左右どちらかが空いている牌を、山から1枚取ります。</li><li>手牌の1枚をタップして選び、もう一度タップするか「この牌を捨てる」で捨てます。</li><li>和了形ができると「ツモ和了」が出ます。和了せず、捨てて続行しても構いません。</li></ol>
+  <p>ペアを取る上海とは異なり、1枚ずつツモります。鳴き・ロン・カン・ドラはありません。</p>
+  <h3>得点</h3><p>通常役は1翻100点。役満は1倍につき1,500点、ダブル役満は3,000点。複合役満は合算します。</p>
+  <p>最終得点 ＝ 基本点 × 0.92<sup>和了巡目−1</sup>（四捨五入）。最初に山から取る牌が1巡目です。</p>
+  <h3>試作版での役の扱い</h3><p>門前清自摸和は必ず1翻。一般的な門前の形の役、七対子、国士無双、役満に対応します。場風・自風は設定しないため、風牌の役牌はありません。立直・一発・天和・地和など宣言や対局状況を要する役も付けません。符・満貫・数え役満は使いません。</p>
+  <p>倍率は小数第3位まで表示しますが、計算には丸める前の値を使います。</p>
+  <button class="action" id="help-close" type="button">わかった</button>
+</dialog>
+<dialog id="restart-dialog" class="sheet" aria-labelledby="restart-title"><h2 id="restart-title">新しい配牌でやり直しますか？</h2><p>今のゲームは終了します。</p><div class="dialog-actions"><button id="restart-cancel" class="quiet" type="button">続ける</button><button id="restart-confirm" class="action" type="button">やり直す</button></div></dialog>
+<dialog id="discards-dialog" class="sheet" aria-labelledby="discards-title"><h2 id="discards-title">これまでの捨て牌</h2><div id="discard-list" class="discard-list"></div><button id="discards-close" class="action" type="button">閉じる</button></dialog>
+<dialog id="result-dialog" class="sheet result" aria-labelledby="result-title">
+  <p id="result-kicker" class="eyebrow">門前ツモ</p><h2 id="result-title">ツモ和了！</h2>
+  <div id="result-hand" class="result-hand" aria-label="最終手牌"></div>
+  <ul id="result-yaku" class="yaku-list"></ul>
+  <p id="result-han" class="result-han"></p><strong id="result-score" class="result-score"></strong><p id="result-formula"></p>
+  <div class="dialog-actions"><button id="result-close" class="quiet" type="button">牌山を見る</button><button id="result-again" class="action" type="button">もう一度遊ぶ</button></div>
+</dialog>
+</body>
+</html>

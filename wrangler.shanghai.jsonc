@@ -1,0 +1,8 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "haijin-shanghai-preview",
+  "account_id": "553a4db21b99715f4c7cee9ec9d029a1",
+  "compatibility_date": "2026-11-21",
+  "workers_dev": true,
+  "assets": { "directory": "./shanghai-dist" }
+}

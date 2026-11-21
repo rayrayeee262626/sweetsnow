@@ -5,6 +5,11 @@
   "description": "牌尽 HAIJIN - local restoration of the published static game",
   "scripts": {
     "dev": "node server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build:shanghai": "node scripts/build-shanghai.cjs",
+    "deploy:shanghai": "npm run build:shanghai && npx wrangler deploy --config wrangler.shanghai.jsonc",
+    "test": "node work/test-title-navigation.cjs && node work/test-chinitsu.cjs && node work/test-sanma.cjs && node work/test-chinitsu-ui.cjs && node work/test-shanghai.cjs",
+    "test:shanghai": "node work/test-shanghai.cjs",
+    "test:shanghai:browser": "node work/test-shanghai-browser.cjs"
   }
 }
